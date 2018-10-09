@@ -69,7 +69,6 @@ public class Company {
 		theOneToRename.setGrossSalary(newSalary);
 	}
 
-	//test
 	public void updateDirectorBenefit(double newBenefit) {
 		for (Employee employee : employees) {
 
