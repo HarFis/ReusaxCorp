@@ -41,33 +41,46 @@ public class Manager extends Employee{
 		this.degree = degree;
 	}
 	
-	@Override // I smell reduandancy !!!
-	// SOLUTION 1: 
-	public double getGrossSalary() {
-		
-		if(this.degree.equals(LOW_EDU_LEVEL))
-			return super.getGrossSalary()+(super.getGrossSalary()*LOW_EDU_BONUS_FACTOR);
-		
-		if(this.degree.equals(MEDIUM_EDU_LEVEL))
-			return super.getGrossSalary()+(super.getGrossSalary()*MEDIUM_EDU_BONUS_FACTOR);
-
-		return super.getGrossSalary()+(super.getGrossSalary()*HIGH_EDU_BONUS_FACTOR);
-	}
-	
 	//SOLUTION 2:
-	public double getGrossSalary2() {
+	public double getGrossSalary() {
 
-		return super.getGrossSalary()+(super.getGrossSalary()*getBonusFactor(this.degree));
+		return super.getGrossSalary()+ this.getBonus();
 	}
 	
-	private double getBonusFactor (String eduLevel)
-	{
-		if(eduLevel.equals(LOW_EDU_LEVEL))
-			return LOW_EDU_BONUS_FACTOR;
-		if(eduLevel.equals(MEDIUM_EDU_LEVEL))
-			return MEDIUM_EDU_BONUS_FACTOR;
-		
-		return HIGH_EDU_BONUS_FACTOR;
+	public double getBonus() { // getting bonus
+
+		double bonus = 0;
+
+		if (this.isDegreeBsc()) {
+			bonus = super.getGrossSalary() * LOW_EDU_BONUS_FACTOR;
+
+		} else if (this.isDegreeMsc()) {
+			bonus = super.getGrossSalary() * MEDIUM_EDU_BONUS_FACTOR;
+
+		} else if (this.isDegreePhd()) {
+			bonus = super.getGrossSalary() * HIGH_EDU_BONUS_FACTOR;
+		}
+
+		return bonus;
+	}
+	
+	public boolean isDegreeBsc() { // Check to see if degree is equal to a BSc
+		return this.degree.toLowerCase().equals(LOW_EDU_LEVEL.toLowerCase());
+	}
+
+	public boolean isDegreeMsc() { // Check to see if degree is equal to a MSc
+		return this.degree.toLowerCase().equals(MEDIUM_EDU_LEVEL.toLowerCase());
+	}
+
+	public boolean isDegreePhd() { // Check to see if degree is equal to a PhD
+		return this.degree.toLowerCase().equals(HIGH_EDU_LEVEL.toLowerCase());
+	}
+	
+	//Override
+	public String toString() {
+
+		String print = super.getName() + "’s gross salary is of " + this.getGrossSalary() + " SEK per month.";
+		return print;
 	}
 	
 }

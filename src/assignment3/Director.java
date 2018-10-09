@@ -1,38 +1,34 @@
 package assignment3;
 
-public class Director extends Manager{
-	
-	/* -----------
-	 * Attributes
-	   ---------- */
+public class Director extends Manager {
+
+	/*
+	 * ----------- Attributes ----------
+	 */
 
 	private String department;
+	private double directorBenefit;
 	
-	//ingen riktig constant
-	private static double directorBonus = 0.0;
-	
+
 	public static final double LOWER_TAXATION_LIMIT = 30000.0;
 	public static final double UPPER_TAXATION_LIMIT = 50000.0;
 	public static final double TAXATION_FACTOR_1 = 0.2;
 	public static final double TAXATION_FACTOR_2 = 0.4;
 
+	/*
+	 * -------------- Constructor -----------
+	 */
 
-	
-	
-	/* --------------
-	 *  Constructor
-	    -----------  */
-	
-	public Director (String id, String name, double grossSalary, String degree, String department)
-	{
+	public Director(String id, String name, double grossSalary, String degree, String department) {
 		super(id, name, grossSalary, degree);
-		this.department = department;		
+		this.department = department;
+		this.directorBenefit = 0.0;
 	}
 
-	/* ------------------
-	 *  Getters & Setters
-	   ------------------ */
-	
+	/*
+	 * ------------------ Getters & Setters ------------------
+	 */
+
 	public String getDepartment() {
 		return department;
 	}
@@ -41,29 +37,36 @@ public class Director extends Manager{
 		this.department = department;
 	}
 
-	public double getDirectorBonus() {
-		return directorBonus;
+	public double getDirectorBenefit() {
+		return directorBenefit;
 	}
 
-	public void setDirectorBonus(double newDirectorBonus) {
-		directorBonus = newDirectorBonus;
+	public void setDirectorBenefit(double directorBenefit) {
+		this.directorBenefit = directorBenefit;
 	}
-	
+
 	@Override
 	public double getGrossSalary() {
-		return super.getGrossSalary() + directorBonus;
-	}
-	
-	@Override
-	public double getNetSalary() {
-				
-		if(this.getGrossSalary() > UPPER_TAXATION_LIMIT)
-			return (LOWER_TAXATION_LIMIT*(1-TAXATION_FACTOR_1)) + ((this.getGrossSalary()-LOWER_TAXATION_LIMIT)*(1-TAXATION_FACTOR_2));
-		
-		if(this.getGrossSalary() >= LOWER_TAXATION_LIMIT)
-			return this.getGrossSalary()*(1-TAXATION_FACTOR_1);
-			
-		return super.getNetSalary();	
+		return super.getGrossSalary() + directorBenefit;
 	}
 
+	@Override
+	public double getNetSalary() {
+
+		if (this.getGrossSalary() > UPPER_TAXATION_LIMIT)
+			return (LOWER_TAXATION_LIMIT * (1 - TAXATION_FACTOR_1))
+					+ ((this.getGrossSalary() - LOWER_TAXATION_LIMIT) * (1 - TAXATION_FACTOR_2));
+
+		if (this.getGrossSalary() >= LOWER_TAXATION_LIMIT)
+			return this.getGrossSalary() * (1 - TAXATION_FACTOR_1);
+
+		return super.getNetSalary();
+	}
+
+	// toString override
+	public String toString() {
+
+		String print = super.getName() + "’s gross salary is of " + this.getGrossSalary() + " SEK per month.";
+		return print;
+	}
 }

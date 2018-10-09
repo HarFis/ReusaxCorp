@@ -1,32 +1,33 @@
 package assignment3;
 
+import assignment3.Employee;
+
 public class Employee {
-	
-	/* -----------
-	 * Attributes
-	   ---------- */
-	
+
+	/*
+	 * ----------- Attributes ----------
+	 */
+
 	private String id;
 	private String name;
 	private double grossSalary;
-	
+
 	public static final double DEFAULT_TAX = 0.1;
-	
-	/* --------------
-	 *  Constructor
-	    -----------  */
-	
-	public Employee (String id, String name, double grossSalary)
-	{
+
+	/*
+	 * -------------- Constructor -----------
+	 */
+
+	public Employee(String id, String name, double grossSalary) {
 		this.id = id;
 		this.name = name;
-		this.grossSalary = grossSalary;		
+		this.grossSalary = grossSalary;
 	}
-	
-	/* ------------------
-	 *  Getters & Setters
-	   ------------------ */
-	
+
+	/*
+	 * ------------------ Getters & Setters ------------------
+	 */
+
 	public String getId() {
 		return id;
 	}
@@ -45,16 +46,38 @@ public class Employee {
 
 	public void setGrossSalary(double grossSalary) {
 		this.grossSalary = grossSalary;
-	}	
-	
-	/* ------------
-	 *  Behaviours
-	   ------------ */
-	
-	public double getNetSalary() {
-		
-		double netSalary = grossSalary - (grossSalary*DEFAULT_TAX);
+	}
+
+	/*
+	 * ------------ Behaviours ------------
+	 */
+
+	public double getNetSalary() { // Getting net salary
+
+		double netSalary = grossSalary - (grossSalary * DEFAULT_TAX);
 		return netSalary;
 	}
-	
+
+	// Override
+
+	// toString
+	public String toString() {
+
+		String print = this.name + "’s gross salary is of " + this.grossSalary + " SEK per month.";
+		return print;
+	}
+
+	public boolean equals(Object anotherObject) { // Equals if same ID
+
+		if (anotherObject instanceof Employee) {
+
+			Employee anotherEmployee = (Employee) anotherObject;
+
+			return this.id.equals(anotherEmployee.getId());
+
+		} else {
+			return false;
+		}
+	}
+
 }
