@@ -18,12 +18,15 @@ public class TestMain {
 		System.out.println(reusaxCorp.retrieveEmployee("4"));
 		
 		reusaxCorp.updateDirectorBenefit(5000);
-		
+		System.out.println(reusaxCorp.toString());
+
 		//System.out.println(reusaxCorp.calculateTotalGrossSalaries());
 		
 		System.out.println(reusaxCorp.retrieveEmployee("3"));
 		reusaxCorp.updateDirectorBenefit(5000);
 		System.out.println(reusaxCorp.retrieveEmployee("3"));
+		reusaxCorp.removeEmployee("3");
+		System.out.println(reusaxCorp.toString());
 	}
 		
 }

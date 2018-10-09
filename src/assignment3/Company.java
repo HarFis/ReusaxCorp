@@ -45,7 +45,7 @@ public class Company {
 
 	public void removeEmployee(String id) {
 		Employee theOneToRemove = retrieveEmployee(id);
-		employees.remove(employees.indexOf(theOneToRemove));
+		employees.remove(theOneToRemove);
 	}
 
 	public Employee retrieveEmployee(String id) {
@@ -109,7 +109,7 @@ public class Company {
 	 */
 
 	public String toString() {
-		String print = "";
+		String print = employees.toString();
 		return print;
 	}
 
