@@ -83,8 +83,9 @@ public class Company {
 	}
 
 	public void updateName(String id, String newName) {
-		Employee theOneToRename = retrieveEmployee(id);
-		theOneToRename.setName(newName);
+		Employee theOneToGetNewSalary = retrieveEmployee(id);
+		
+		theOneToGetNewSalary.setName(newName);
 	}
 
 	public void updateGrossSalary(String id, double newSalary) {
