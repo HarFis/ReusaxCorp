@@ -105,7 +105,8 @@ public class Company {
 	}
 
 	/*
-	 * ------------ toSTRING ------------
+	 * ------------ toSTRING ------------ 
+	 * Test
 	 */
 
 	public String toString() {
