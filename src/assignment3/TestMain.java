@@ -7,17 +7,21 @@ public class TestMain {
 		
 		Company reusaxCorp = new Company();
 		
-		reusaxCorp.registerDefaultEmployee("1", "Alex", 30000);
-		reusaxCorp.registerManager("2", "Bertil", 40000, "bsc.");
-		reusaxCorp.registerDirector("3", "Cesar", 50000, "phd", "Technincal");
-		reusaxCorp.registerIntern("4", "David", 10000, 9);
+		reusaxCorp.registerDefaultEmployee("1", "Bertil", 30000);
+		reusaxCorp.registerManager("2", "David", 40000, "bsc.");
+		reusaxCorp.registerDirector("3", "Ceast", 50000, "phd", "Technincal");
+		reusaxCorp.registerIntern("4", "Adam", 10000, 9);
 		
-		System.out.println(reusaxCorp.toString());
+		System.out.println(reusaxCorp);
 		//reusaxCorp.updateDirectorBenefit(5000);
 		
-		reusaxCorp.changeToIntern("3", 9.0);
-		System.out.println(reusaxCorp.toString());
-
+		reusaxCorp.sortBy("Name");
+		System.out.println();
+		//reusaxCorp.changeToIntern("3", 9.0);
+		System.out.println(reusaxCorp);
+		System.out.println();
+		reusaxCorp.sortBy("Net Salary");
+		System.out.println(reusaxCorp);
 
 		
 	}
