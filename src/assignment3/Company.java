@@ -1,6 +1,8 @@
 package assignment3;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Collections;
 
 public class Company {
 
@@ -9,6 +11,9 @@ public class Company {
 	 */
 
 	private ArrayList<Employee> employees;
+	
+	public static final String SORT_BY_NAME = "Name";
+	public static final String SORT_BY_NET_SALARY = "Net Salary";
 
 	/*
 	 * -------------- Constructor -----------
@@ -22,17 +27,17 @@ public class Company {
 	 * ------------ Behaviours ------------
 	 */
 
-	public boolean registerDefaultEmployee(String id, String name, double salary) {
-		if (this.retrieveEmployee(id) == null) {
+	public boolean registerDefaultEmployee(String id, String name, double salary) {			//Register an Employee, returning value to tell if Employee was added
+		if (this.retrieveEmployee(id) == null) {											//Checking if Employee already exists
 			Employee newRegistered = new Employee(id, name, salary);
 			employees.add(newRegistered);
-			return true;
+			return true;																	
 		}
 		return false;
 	}
 
-	public boolean registerIntern(String id, String name, double salary, double gpa) {
-		if (this.retrieveEmployee(id) == null) {
+	public boolean registerIntern(String id, String name, double salary, double gpa) {		//Register an Intern, returning value to tell if Intern was added 
+		if (this.retrieveEmployee(id) == null) {											//Checking if Intern already exists
 			Intern newRegistered = new Intern(id, name, salary, gpa);
 			employees.add(newRegistered);
 
@@ -41,8 +46,8 @@ public class Company {
 		return false;
 	}
 
-	public boolean registerManager(String id, String name, double salary, String degree) {
-		if (this.retrieveEmployee(id) == null) {
+	public boolean registerManager(String id, String name, double salary, String degree) {		//Register a Manager, returning value to tell if manager was added
+		if (this.retrieveEmployee(id) == null) {												//Checking if Manager already exsits
 			Manager newRegistered = new Manager(id, name, salary, degree);
 			employees.add(newRegistered);
 
@@ -51,8 +56,8 @@ public class Company {
 		return false;
 	}
 
-	public boolean registerDirector(String id, String name, double salary, String degree, String department) {
-		if (this.retrieveEmployee(id) == null) {
+	public boolean registerDirector(String id, String name, double salary, String degree, String department) {				//Register a Director, returning value to tell if manager was added
+		if (this.retrieveEmployee(id) == null) {																			//Checking if Director already exsits
 			Director newRegistered = new Director(id, name, salary, degree, department);
 			employees.add(newRegistered);
 
@@ -122,8 +127,15 @@ public class Company {
 		return totalNumber;
 	}
 	
-	//PROMOTE
-	
+	//Changing the types of Employees
+	/*
+	 * Bad:
+	 *  - Redundancy, same code in different methods
+	 *  - getGrossSalary is overriden in all subclasses, to access original salary
+	 *    we need to create new method getBaseSalary. (Redundancy)
+	 * 
+	 * 
+	 */
 	public void changeToEmployee(String id) {
 		
 		Employee employeeToChange = this.retrieveEmployee(id);
@@ -170,7 +182,38 @@ public class Company {
 		this.registerIntern(id, name, grossSalary, gpa);
 	}
 	
+	/*
+	 * -------Sort----
+	 */
 	
+	public void sortBy(String sortOrder) {
+
+		if (sortOrder.equals(SORT_BY_NAME)) {
+
+			Collections.sort(employees, new Comparator<Employee>() {
+
+				public int compare(Employee employee1, Employee employee2) {
+
+					int result = employee1.getName().compareTo(employee2.getName());
+
+					if (result != 0) {
+						return result;
+					} else {
+						return Double.compare(employee1.getBaseSalary(), employee2.getBaseSalary());
+					}
+				}
+			});
+		} else if (sortOrder.equals(SORT_BY_NET_SALARY)) {
+			
+			Collections.sort(employees, new Comparator<Employee>() {
+
+				public int compare(Employee employee1, Employee employee2) {
+
+						return Double.compare(employee1.getNetSalary(), employee2.getNetSalary());
+					}
+			});
+		}
+	}
 
 	/*
 	 * ------------ toSTRING ------------ 
