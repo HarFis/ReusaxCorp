@@ -121,6 +121,56 @@ public class Company {
 
 		return totalNumber;
 	}
+	
+	//PROMOTE
+	
+	public void changeToEmployee(String id) {
+		
+		Employee employeeToChange = this.retrieveEmployee(id);
+		String name = employeeToChange.getName();
+		double salary = employeeToChange.getBaseSalary();
+		
+		this.removeEmployee(id);
+		
+		this.registerDefaultEmployee(id, name, salary);
+	}
+	
+	
+	public void changeToManager(String id, String degree) {
+		
+		Employee employeeToChange = this.retrieveEmployee(id);
+		
+		String name = employeeToChange.getName();
+		double grossSalary = employeeToChange.getBaseSalary();
+		
+		this.removeEmployee(id);
+		this.registerManager(id, name, grossSalary, degree);
+		
+	}
+	
+	public void changeToDirector(String id, String degree, String department) {
+		
+		Employee employeeToChange = this.retrieveEmployee(id);
+
+		String name = employeeToChange.getName();
+		double grossSalary = employeeToChange.getBaseSalary();
+
+		this.removeEmployee(id);
+		this.registerDirector(id, name, grossSalary, degree, department);
+	}
+	
+	public void changeToIntern(String id, double gpa) {
+		
+		Employee employeeToChange = this.retrieveEmployee(id);
+		
+		String name = employeeToChange.getName();
+		double grossSalary = employeeToChange.getBaseSalary();
+
+		this.removeEmployee(id);
+		this.registerIntern(id, name, grossSalary, gpa);
+	}
+	
+	
 
 	/*
 	 * ------------ toSTRING ------------ 

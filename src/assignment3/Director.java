@@ -62,11 +62,4 @@ public class Director extends Manager {
 
 		return super.getNetSalary();
 	}
-
-	// toString override
-	public String toString() {
-
-		String print = super.getName() + "’s gross salary is of " + this.getGrossSalary() + " SEK per month.";
-		return print;
-	}
 }

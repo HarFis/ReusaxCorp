@@ -75,12 +75,4 @@ public class Manager extends Employee{
 	public boolean isDegreePhd() { // Check to see if degree is equal to a PhD
 		return this.degree.toLowerCase().equals(HIGH_EDU_LEVEL.toLowerCase());
 	}
-	
-	//Override
-	public String toString() {
-
-		String print = super.getName() + "’s gross salary is of " + this.getGrossSalary() + " SEK per month.";
-		return print;
-	}
-	
 }

@@ -47,6 +47,10 @@ public class Employee {
 	public void setGrossSalary(double grossSalary) {
 		this.grossSalary = grossSalary;
 	}
+	
+	public double getBaseSalary() {
+		return grossSalary;
+	}
 
 	/*
 	 * ------------ Behaviours ------------
@@ -63,7 +67,7 @@ public class Employee {
 	// toString
 	public String toString() {
 
-		String print = this.name + "’s gross salary is of " + this.grossSalary + " SEK per month.";
+		String print = this.getName() + "’s gross salary is of " + this.getGrossSalary() + " SEK per month.";
 		return print;
 	}
 

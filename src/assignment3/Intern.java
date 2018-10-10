@@ -46,12 +46,4 @@ public class Intern extends Employee {
 
 		return LOW_GPA_SALARY;
 	}
-	
-	//toString
-	public String toString() {
-
-		String print = super.getName() + "’s gross salary is of " + this.getGrossSalary() + " SEK per month.";
-		return print;
-	}
-	
 }
