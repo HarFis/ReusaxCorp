@@ -22,25 +22,43 @@ public class Company {
 	 * ------------ Behaviours ------------
 	 */
 
-	public void registerDefaultEmployee(String id, String name, double salary) {
-		Employee newRegistered = new Employee(id, name, salary);
-		employees.add(newRegistered);
-
+	public boolean registerDefaultEmployee(String id, String name, double salary) {
+		if (this.retrieveEmployee(id) == null) {
+			Employee newRegistered = new Employee(id, name, salary);
+			employees.add(newRegistered);
+			return true;
+		}
+		return false;
 	}
 
-	public void registerIntern(String id, String name, double salary, double gpa) {
-		Intern newRegistered = new Intern(id, name, salary, gpa);
-		employees.add(newRegistered);
+	public boolean registerIntern(String id, String name, double salary, double gpa) {
+		if (this.retrieveEmployee(id) == null) {
+			Intern newRegistered = new Intern(id, name, salary, gpa);
+			employees.add(newRegistered);
+
+			return true;
+		}
+		return false;
 	}
 
-	public void registerManager(String id, String name, double salary, String degree) {
-		Manager newRegistered = new Manager(id, name, salary, degree);
-		employees.add(newRegistered);
+	public boolean registerManager(String id, String name, double salary, String degree) {
+		if (this.retrieveEmployee(id) == null) {
+			Manager newRegistered = new Manager(id, name, salary, degree);
+			employees.add(newRegistered);
+
+			return true;
+		}
+		return false;
 	}
 
-	public void registerDirector(String id, String name, double salary, String degree, String department) {
-		Director newRegistered = new Director(id, name, salary, degree, department);
-		employees.add(newRegistered);
+	public boolean registerDirector(String id, String name, double salary, String degree, String department) {
+		if (this.retrieveEmployee(id) == null) {
+			Director newRegistered = new Director(id, name, salary, degree, department);
+			employees.add(newRegistered);
+
+			return true;
+		}
+		return false;
 	}
 
 	public void removeEmployee(String id) {
