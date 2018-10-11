@@ -8,7 +8,6 @@ public class Manager extends Employee{
 	
 	private String degree;
 	
-	// TODO: There must be a better way to do this
 	public static final String LOW_EDU_LEVEL = "BSc.";
 	public static final double LOW_EDU_BONUS_FACTOR = 0.1;
 
@@ -41,12 +40,7 @@ public class Manager extends Employee{
 		this.degree = degree;
 	}
 	
-	public double getGrossSalary() {
-
-		return super.getGrossSalary()+ this.getBonus();
-	}
-	
-	public double getBonus() { // getting bonus
+	public double getBonus() { // getting bonus depending on which degree
 
 		double bonus = 0;
 
@@ -63,6 +57,11 @@ public class Manager extends Employee{
 		return bonus;
 	}
 	
+	@Override
+	public double getGrossSalary() {
+
+		return super.getGrossSalary()+ this.getBonus();
+	}
 	public boolean isDegreeBsc() { // Check to see if degree is equal to a BSc
 		return this.degree.toLowerCase().equals(LOW_EDU_LEVEL.toLowerCase());
 	}

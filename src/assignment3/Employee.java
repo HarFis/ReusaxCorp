@@ -62,7 +62,6 @@ public class Employee {
 		return netSalary;
 	}
 
-	// Override
 
 	// toString
 	public String toString() {

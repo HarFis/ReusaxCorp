@@ -42,15 +42,17 @@ public class Director extends Manager {
 	}
 
 	@Override
-	public double getNetSalary() {
+	public double getNetSalary() {							//Different net salary for different gross salary
 
-		if (this.getGrossSalary() > UPPER_TAXATION_LIMIT)
+		if (this.getGrossSalary() > UPPER_TAXATION_LIMIT) {
 			return (LOWER_TAXATION_LIMIT * (1 - TAXATION_FACTOR_1))
-					+ ((this.getGrossSalary() - LOWER_TAXATION_LIMIT) * (1 - TAXATION_FACTOR_2));
-
-		if (this.getGrossSalary() >= LOWER_TAXATION_LIMIT)
+					+ ((this.getGrossSalary() - LOWER_TAXATION_LIMIT) * (1 - TAXATION_FACTOR_2));			
+			
+		} else if (this.getGrossSalary() >= LOWER_TAXATION_LIMIT) {
 			return this.getGrossSalary() * (1 - TAXATION_FACTOR_1);
-
-		return super.getNetSalary();
+			
+		} else {
+			return super.getNetSalary();
+		}
 	}
 }

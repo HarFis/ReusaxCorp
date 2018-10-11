@@ -19,7 +19,7 @@ public class Intern extends Employee {
 
 	public Intern(String id, String name, double grossSalary, double gpa) {
 		super(id, name, grossSalary);
-		this.gpa = gpa; //check if values are valid in Constructor? 
+		this.gpa = gpa; 
 	}
 
 
@@ -41,14 +41,16 @@ public class Intern extends Employee {
 	}
 	
 	@Override
-	public double getGrossSalary() {
-		
-		if(this.gpa >= UPPER_GPA_LIMIT)
-			return super.getGrossSalary() + HIGH_GPA_BONUS;
-		
-		if(this.gpa > LOWER_GPA_LIMIT)
-			return super.getGrossSalary();
+	public double getGrossSalary() {						// Get Salary based on GPA
 
-		return LOW_GPA_SALARY;
+		if (this.gpa >= UPPER_GPA_LIMIT) { 					
+			return super.getGrossSalary() + HIGH_GPA_BONUS;		// Gross salary with bonus
+			
+		} else if (this.gpa > LOWER_GPA_LIMIT) {			
+			return super.getGrossSalary();					//Ordinary gross salary
+			
+		} else {
+			return LOW_GPA_SALARY;							//Zero gross salary
+		}
 	}
 }
