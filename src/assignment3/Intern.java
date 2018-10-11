@@ -5,19 +5,22 @@ public class Intern extends Employee {
 	/* -----------
 	 * Attributes
 	   ---------- */
-	private double gpa;
+	private int gpa;
 	
-	public static final double LOWER_GPA_LIMIT = 5.0;
-	public static final double UPPER_GPA_LIMIT = 8.0;
+	public static final int LOWER_GPA_LIMIT = 5;
+	public static final int UPPER_GPA_LIMIT = 8;
 	public static final double HIGH_GPA_BONUS = 1000.0;
 	public static final double LOW_GPA_SALARY = 0.0;
+
+	public static final int MIN_GPA = 0;
+	public static final int MAX_GPA = 10;
 
 	
 	/* --------------
 	 *  Constructor
 	    -----------  */
 
-	public Intern(String id, String name, double grossSalary, double gpa) {
+	public Intern(String id, String name, double grossSalary, int gpa) {
 		super(id, name, grossSalary);
 		this.gpa = gpa; 
 	}
@@ -31,7 +34,12 @@ public class Intern extends Employee {
 		return gpa;
 	}
 
-	public void setGpa(double gpa) {
+	public void setGpa(int gpa) {
+		if(gpa>MAX_GPA)
+		{this.gpa = MAX_GPA;}
+		if(gpa<MIN_GPA)
+		{this.gpa = MIN_GPA;}
+		
 		this.gpa = gpa;
 	}
 	
