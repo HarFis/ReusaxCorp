@@ -24,7 +24,6 @@ public class Company {
 		employees = new ArrayList<>();
 		directorBenefit = 0.0;
 	}
-	
 
 	/*
 	 * ------------ Behaviours ------------
@@ -61,7 +60,7 @@ public class Company {
 		return false;
 	}
 
-	public boolean registerIntern(String id, String name, double salary, double gpa) {		//Register an Intern, returning value to tell if Intern was added 
+	public boolean registerIntern(String id, String name, double salary, int gpa) {		//Register an Intern, returning value to tell if Intern was added 
 		if (this.retrieveEmployee(id) == null) {											//Checking if Intern already exists
 			Intern newRegistered = new Intern(id, name, salary, gpa);
 			employees.add(newRegistered);
@@ -95,42 +94,49 @@ public class Company {
 	 *  UPDATE EMPLOYEES' INFO AND REMOVE EMPLOYEE
 	 */
 
-	public void removeEmployee(String id) {
+	public boolean removeEmployee(String id) {
 		Employee theOneToRemove = retrieveEmployee(id);
 		if (theOneToRemove != null) {
 			employees.remove(theOneToRemove);
+			return true;
 		}else {
-			printErrorMessage(id);
+			return false;
 		}
 	}
 
-	public void updateName(String id, String newName) {
+	public boolean updateName(String id, String newName) {
 		Employee theOneToGetNewSalary = retrieveEmployee(id);
 		if (theOneToGetNewSalary != null) {
 			theOneToGetNewSalary.setName(newName);
+			return true;
 			
 		}else {
-			printErrorMessage(id);
+			return false;
 		}
 	}
 
-	public void updateDegree(String id, String newDegree) {
+	public boolean updateDegree(String id, String newDegree) {
 		Employee theOneToGetNewDegree = retrieveEmployee(id);
 		if (theOneToGetNewDegree != null) {
 			if (theOneToGetNewDegree instanceof Manager || theOneToGetNewDegree instanceof Director) {
 				Manager theOneTemp = (Manager) theOneToGetNewDegree;
 				theOneTemp.setDegree(newDegree);
+				return true;
 			}
+			return false;
 		}else {
-			printErrorMessage(id);
+			return false;
 		}
 	}
 
-	public void updateGrossSalary(String id, double newSalary) {
+	public boolean updateGrossSalary(String id, double newSalary) {
 		Employee theOneToChangeSalary = retrieveEmployee(id);
-		if(theOneToChangeSalary != null)
-		{theOneToChangeSalary.setGrossSalary(newSalary);}
-		else {printErrorMessage(id);}
+		if (theOneToChangeSalary != null) {
+			theOneToChangeSalary.setGrossSalary(newSalary);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public void updateDirectorBenefit(double newBenefit) {
@@ -174,50 +180,75 @@ public class Company {
 	 * 
 	 * 
 	 */
-	public void changeToEmployee(String id) {
-		
-		Employee employeeToChange = this.retrieveEmployee(id);
-		
-		String name = employeeToChange.getName();
-		double salary = employeeToChange.getBaseSalary();
-		
-		this.removeEmployee(id);
-		this.registerDefaultEmployee(id, name, salary);
-	}
 	
-	
-	public void changeToManager(String id, String degree) {
-		
-		Employee employeeToChange = this.retrieveEmployee(id);
-		
-		String name = employeeToChange.getName();
-		double grossSalary = employeeToChange.getBaseSalary();
-		
-		this.removeEmployee(id);
-		this.registerManager(id, name, grossSalary, degree);
+	public String checkPosition (String id) {
+		Employee searchedEmployee = retrieveEmployee(id);
+		if(searchedEmployee!=null)
+		{
+			return searchedEmployee.getClass().getSimpleName();
+		}
+		return "Does not exist";
 		
 	}
 	
-	public void changeToDirector(String id, String degree, String department) {
-		
+	public boolean changeToEmployee(String id) {
+
 		Employee employeeToChange = this.retrieveEmployee(id);
+		if (employeeToChange != null) {
+			String name = employeeToChange.getName();
+			double salary = employeeToChange.getBaseSalary();
 
-		String name = employeeToChange.getName();
-		double grossSalary = employeeToChange.getBaseSalary();
-
-		this.removeEmployee(id);
-		this.registerDirector(id, name, grossSalary, degree, department);
+			this.removeEmployee(id);
+			this.registerDefaultEmployee(id, name, salary);
+			return true;
+		} else {
+			return false;
+		}
 	}
-	
-	public void changeToIntern(String id, double gpa) {
-		
-		Employee employeeToChange = this.retrieveEmployee(id);
-		
-		String name = employeeToChange.getName();
-		double grossSalary = employeeToChange.getBaseSalary();
 
-		this.removeEmployee(id);
-		this.registerIntern(id, name, grossSalary, gpa);
+	public boolean changeToManager(String id, String degree) {
+
+		Employee employeeToChange = this.retrieveEmployee(id);
+		if (employeeToChange != null) {
+			String name = employeeToChange.getName();
+			double grossSalary = employeeToChange.getBaseSalary();
+
+			this.removeEmployee(id);
+			this.registerManager(id, name, grossSalary, degree);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean changeToDirector(String id, String degree, String department) {
+
+		Employee employeeToChange = this.retrieveEmployee(id);
+		if (employeeToChange != null) {
+			String name = employeeToChange.getName();
+			double grossSalary = employeeToChange.getBaseSalary();
+
+			this.removeEmployee(id);
+			this.registerDirector(id, name, grossSalary, degree, department);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean changeToIntern(String id, int gpa) {
+
+		Employee employeeToChange = this.retrieveEmployee(id);
+		if (employeeToChange != null) {
+			String name = employeeToChange.getName();
+			double grossSalary = employeeToChange.getBaseSalary();
+
+			this.removeEmployee(id);
+			this.registerIntern(id, name, grossSalary, gpa);
+			return true;
+		} else {
+			return false;
+	}
 	}
 	
 	/*
@@ -250,6 +281,7 @@ public class Company {
 					}
 				}
 			});
+			
 		} else if (sortOrder.equals(SORT_BY_NET_SALARY)) {
 
 			Collections.sort(employees, new Comparator<Employee>() {
@@ -262,14 +294,7 @@ public class Company {
 		}
 	}
 	
-	/*
-	 * OUTPUTS - TOSTRING & ERROR 
-	 */
-	
-	public void printErrorMessage (String id)
-	{
-		System.out.println("An employee of ID "+id+" is not registered in the system.");
-	}
+
 
 	/*
 	 * ------------ toSTRING ------------ 

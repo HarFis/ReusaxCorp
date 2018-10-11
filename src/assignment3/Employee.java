@@ -62,15 +62,16 @@ public class Employee {
 		return netSalary;
 	}
 
-	// Override
 
 	// toString
+	@Override
 	public String toString() {
 
-		String print = this.getName() + "'s gross salary is of " + this.getGrossSalary() + " SEK per month. (Net slaray" + this.getNetSalary()+")\n";
+		String print = this.getName() + "'s gross salary is of " + this.getGrossSalary() + " SEK per month. (Net Salary: " + this.getNetSalary()+" SEK/month)\n";
 		return print;
 	}
 
+	
 	public boolean equals(Object anotherObject) { // Equals if same ID
 
 		if (anotherObject instanceof Employee) {
