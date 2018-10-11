@@ -7,10 +7,10 @@ public class TestMain {
 		
 		Company reusaxCorp = new Company();
 		
-		reusaxCorp.registerDefaultEmployee("1", "Bertil", 30000);
-		reusaxCorp.registerManager("2", "David", 40000, "bsc.");
+		reusaxCorp.registerDefaultEmployee("1", "Bertil", 10000);
+		reusaxCorp.registerManager("2", "David", 10000, "bsc.");
 		reusaxCorp.registerDirector("3", "Ceast", 50000, "phd", "Technincal");
-		reusaxCorp.registerIntern("4", "Adam", 10000, 9);
+		reusaxCorp.registerIntern("4", "Adam", 10000, 8);
 		
 		System.out.println(reusaxCorp);
 		//reusaxCorp.updateDirectorBenefit(5000);

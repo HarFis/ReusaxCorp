@@ -11,6 +11,7 @@ public class Company {
 	 */
 
 	private ArrayList<Employee> employees;
+	private double directorBenefit;
 	
 	public static final String SORT_BY_NAME = "Name";
 	public static final String SORT_BY_NET_SALARY = "Net Salary";
@@ -21,13 +22,16 @@ public class Company {
 
 	public Company() {
 		employees = new ArrayList<>();
+		directorBenefit = 0.0;
 	}
+	
+	
 
 	/*
 	 * ------------ Behaviours ------------
 	 */
 	
-	
+
 	/*
 	 * SEARCH FOR EMPLOYEE IN LIST
 	 */
@@ -79,7 +83,7 @@ public class Company {
 
 	public boolean registerDirector(String id, String name, double salary, String degree, String department) {				//Register a Director, returning value to tell if manager was added
 		if (this.retrieveEmployee(id) == null) {																			//Checking if Director already exsits
-			Director newRegistered = new Director(id, name, salary, degree, department);
+			Director newRegistered = new Director(id, name, salary, degree, department, directorBenefit);
 			employees.add(newRegistered);
 
 			return true;
@@ -106,6 +110,17 @@ public class Company {
 		
 		else {printErrorMessage(id);}
 	}
+	
+	public void updateDegree (String id, String newDegree) {
+		Employee theOneToGetNewDegree = retrieveEmployee(id);
+		if(theOneToGetNewDegree != null)
+		{if (theOneToGetNewDegree instanceof Manager || theOneToGetNewDegree instanceof Director)
+				{Manager theOneTemp = (Manager) theOneToGetNewDegree;
+				theOneTemp.setDegree(newDegree);}
+		}
+		
+		else {printErrorMessage(id);}
+	}
 
 	public void updateGrossSalary(String id, double newSalary) {
 		Employee theOneToChangeSalary = retrieveEmployee(id);
@@ -115,6 +130,7 @@ public class Company {
 	}
 
 	public void updateDirectorBenefit(double newBenefit) {
+		this.directorBenefit = newBenefit;
 		for (Employee employee : employees) {
 
 			if (employee instanceof Director) {

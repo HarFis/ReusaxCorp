@@ -19,16 +19,16 @@ public class Director extends Manager {
 	 * -------------- Constructor -----------
 	 */
 
-	public Director(String id, String name, double grossSalary, String degree, String department) {
+	public Director(String id, String name, double grossSalary, String degree, String department, double directorBenefit) {
 		super(id, name, grossSalary, degree);
 		this.department = department;
-		this.directorBenefit = 0.0;
+		this.directorBenefit = directorBenefit;
 	}
 
 	/*
 	 * ------------------ Getters & Setters ------------------
 	 */
-
+		
 	public String getDepartment() {
 		return department;
 	}
