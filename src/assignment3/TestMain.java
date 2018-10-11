@@ -9,9 +9,10 @@ public class TestMain {
 		
 		reusaxCorp.registerDefaultEmployee("1", "Bertil", 10000);
 		reusaxCorp.registerManager("2", "David", 10000, "bsc.");
-		reusaxCorp.registerDirector("3", "Ceast", 50000, "phd", "Technincal");
+		reusaxCorp.registerDirector("3", "Ceast", 27000, "msc.", "Technincal");
 		reusaxCorp.registerIntern("4", "Adam", 10000, 8);
 		
+		reusaxCorp.updateDirectorBenefit(5000);
 		System.out.println(reusaxCorp);
 		//reusaxCorp.updateDirectorBenefit(5000);
 		
