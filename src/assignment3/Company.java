@@ -26,6 +26,27 @@ public class Company {
 	/*
 	 * ------------ Behaviours ------------
 	 */
+	
+	
+	/*
+	 * SEARCH FOR EMPLOYEE IN LIST
+	 */
+	public Employee retrieveEmployee(String id) {
+		Employee searchedEmployee = null;
+		for (Employee employee : employees) {
+			if (employee.getId().equals(id)) {
+				searchedEmployee = employee;
+				return searchedEmployee;
+			}
+		}
+		return searchedEmployee;
+	}
+	
+	
+	/*
+	 * REGISTER NEW EMPLOYEES
+	 * 
+	 */
 
 	public boolean registerDefaultEmployee(String id, String name, double salary) {			//Register an Employee, returning value to tell if Employee was added
 		if (this.retrieveEmployee(id) == null) {											//Checking if Employee already exists
@@ -65,32 +86,32 @@ public class Company {
 		}
 		return false;
 	}
+	
+	/*
+	 *  UPDATE EMPLOYEES' INFO AND REMOVE EMPLOYEE
+	 */
 
 	public void removeEmployee(String id) {
 		Employee theOneToRemove = retrieveEmployee(id);
-		employees.remove(theOneToRemove);
-	}
-
-	public Employee retrieveEmployee(String id) {
-		Employee searchedEmployee = null;
-		for (Employee employee : employees) {
-			if (employee.getId().equals(id)) {
-				searchedEmployee = employee;
-				return searchedEmployee;
-			}
-		}
-		return searchedEmployee;
+		if(theOneToRemove != null)
+		{employees.remove(theOneToRemove);}
+		
+		else {printErrorMessage(id);}		
 	}
 
 	public void updateName(String id, String newName) {
 		Employee theOneToGetNewSalary = retrieveEmployee(id);
+		if(theOneToGetNewSalary != null)
+		{theOneToGetNewSalary.setName(newName);}
 		
-		theOneToGetNewSalary.setName(newName);
+		else {printErrorMessage(id);}
 	}
 
 	public void updateGrossSalary(String id, double newSalary) {
-		Employee theOneToRename = retrieveEmployee(id);
-		theOneToRename.setGrossSalary(newSalary);
+		Employee theOneToChangeSalary = retrieveEmployee(id);
+		if(theOneToChangeSalary != null)
+		{theOneToChangeSalary.setGrossSalary(newSalary);}
+		else {printErrorMessage(id);}
 	}
 
 	public void updateDirectorBenefit(double newBenefit) {
@@ -103,12 +124,15 @@ public class Company {
 		}
 	}
 
+	/*
+	 *  CALCULATE SUM OF EMPLOYEES' SALARIES & TOTAL NUMBER OF EMPLOYEES
+	 */
+	
 	public double calculateTotalGrossSalaries() {
 		double total = 0.0;
 		for (Employee employee : employees) {
 			total += employee.getGrossSalary();
 		}
-
 		return total;
 	}
 
@@ -140,11 +164,11 @@ public class Company {
 	public void changeToEmployee(String id) {
 		
 		Employee employeeToChange = this.retrieveEmployee(id);
+		
 		String name = employeeToChange.getName();
 		double salary = employeeToChange.getBaseSalary();
 		
 		this.removeEmployee(id);
-		
 		this.registerDefaultEmployee(id, name, salary);
 	}
 	
@@ -215,10 +239,18 @@ public class Company {
 			});
 		}
 	}
+	
+	/*
+	 * OUTPUTS - TOSTRING & ERROR 
+	 */
+	
+	public void printErrorMessage (String id)
+	{
+		System.out.println("An employee of ID "+id+" is not registered in the system.");
+	}
 
 	/*
 	 * ------------ toSTRING ------------ 
-	 * Test
 	 */
 
 	public String toString() {
