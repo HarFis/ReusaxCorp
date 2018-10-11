@@ -67,7 +67,7 @@ public class Employee {
 	// toString
 	public String toString() {
 
-		String print = this.getName() + "�s gross salary is of " + this.getGrossSalary() + " SEK per month. (Net slaray" + this.getNetSalary()+")\n";
+		String print = this.getName() + "'s gross salary is of " + this.getGrossSalary() + " SEK per month. (Net slaray" + this.getNetSalary()+")\n";
 		return print;
 	}
 
