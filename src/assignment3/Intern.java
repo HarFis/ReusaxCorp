@@ -36,6 +36,11 @@ public class Intern extends Employee {
 	}
 	
 	@Override
+	public double getNetSalary() {
+		return this.getGrossSalary();
+	}
+	
+	@Override
 	public double getGrossSalary() {
 		
 		if(this.gpa >= UPPER_GPA_LIMIT)
