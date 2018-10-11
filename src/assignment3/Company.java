@@ -94,7 +94,7 @@ public class Company {
 	 *  UPDATE EMPLOYEES' INFO AND REMOVE EMPLOYEE
 	 */
 
-	public boolean removeEmployee(String id) {
+	public boolean removeEmployee(String id) {						//Removing employee, returning if successful or not
 		Employee theOneToRemove = retrieveEmployee(id);
 		if (theOneToRemove != null) {
 			employees.remove(theOneToRemove);
@@ -104,7 +104,7 @@ public class Company {
 		}
 	}
 
-	public boolean updateName(String id, String newName) {
+	public boolean updateName(String id, String newName) {					//Updating name to Employee, returning if successful or not
 		Employee theOneToGetNewSalary = retrieveEmployee(id);
 		if (theOneToGetNewSalary != null) {
 			theOneToGetNewSalary.setName(newName);
@@ -115,10 +115,10 @@ public class Company {
 		}
 	}
 
-	public boolean updateDegree(String id, String newDegree) {
+	public boolean updateDegree(String id, String newDegree) { 						//Updating degree, returning if successful or not
 		Employee theOneToGetNewDegree = retrieveEmployee(id);
 		if (theOneToGetNewDegree != null) {
-			if (theOneToGetNewDegree instanceof Manager || theOneToGetNewDegree instanceof Director) {
+			if (theOneToGetNewDegree instanceof Manager || theOneToGetNewDegree instanceof Director) {		//Can only update degree if Employee is Manager or Director
 				Manager theOneTemp = (Manager) theOneToGetNewDegree;
 				theOneTemp.setDegree(newDegree);
 				return true;
@@ -264,7 +264,7 @@ public class Company {
 	 * -------Sort----
 	 */
 	
-	public void sortBy(String sortOrder) {
+	public void sortBy(String sortOrder) {					//Sorting by name, if same name sort by gross salary
 
 		if (sortOrder.equals(SORT_BY_NAME)) {
 
@@ -282,7 +282,7 @@ public class Company {
 				}
 			});
 			
-		} else if (sortOrder.equals(SORT_BY_NET_SALARY)) {
+		} else if (sortOrder.equals(SORT_BY_NET_SALARY)) {			//Sorting by net salary
 
 			Collections.sort(employees, new Comparator<Employee>() {
 
