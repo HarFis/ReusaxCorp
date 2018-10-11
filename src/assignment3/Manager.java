@@ -41,7 +41,6 @@ public class Manager extends Employee{
 		this.degree = degree;
 	}
 	
-	//SOLUTION 2:
 	public double getGrossSalary() {
 
 		return super.getGrossSalary()+ this.getBonus();

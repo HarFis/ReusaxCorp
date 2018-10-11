@@ -7,8 +7,6 @@ public class Director extends Manager {
 	 */
 
 	private String department;
-	private double directorBenefit;
-	
 
 	public static final double LOWER_TAXATION_LIMIT = 30000.0;
 	public static final double UPPER_TAXATION_LIMIT = 50000.0;
@@ -19,16 +17,17 @@ public class Director extends Manager {
 	 * -------------- Constructor -----------
 	 */
 
-	public Director(String id, String name, double grossSalary, String degree, String department, double directorBenefit) {
+	public Director(String id, String name, double grossSalary, String degree, String department) {
 		super(id, name, grossSalary, degree);
 		this.department = department;
-		this.directorBenefit = directorBenefit;
 	}
 
 	/*
 	 * ------------------ Getters & Setters ------------------
 	 */
-		
+	
+	
+	
 	public String getDepartment() {
 		return department;
 	}
@@ -37,17 +36,9 @@ public class Director extends Manager {
 		this.department = department;
 	}
 
-	public double getDirectorBenefit() {
-		return directorBenefit;
-	}
-
-	public void setDirectorBenefit(double directorBenefit) {
-		this.directorBenefit = directorBenefit;
-	}
-
 	@Override
 	public double getGrossSalary() {
-		return super.getGrossSalary() + directorBenefit;
+		return super.getGrossSalary() + Company.getDirectorBenefit();
 	}
 
 	@Override
