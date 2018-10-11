@@ -23,6 +23,12 @@ public class TestMain {
 		System.out.println();
 		reusaxCorp.sortBy("Net Salary");
 		System.out.println(reusaxCorp);
+		reusaxCorp.updateDirectorBenefit(1000);
+		System.out.println();
+
+		System.out.println(reusaxCorp);
+
+
 
 		
 	}

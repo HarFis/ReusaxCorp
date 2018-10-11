@@ -251,13 +251,13 @@ public class Company {
 				}
 			});
 		} else if (sortOrder.equals(SORT_BY_NET_SALARY)) {
-			
+
 			Collections.sort(employees, new Comparator<Employee>() {
 
 				public int compare(Employee employee1, Employee employee2) {
 
-						return Double.compare(employee1.getNetSalary(), employee2.getNetSalary());
-					}
+					return Double.compare(employee1.getNetSalary(), employee2.getNetSalary());
+				}
 			});
 		}
 	}
