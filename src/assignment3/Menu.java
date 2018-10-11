@@ -1,10 +1,11 @@
 package assignment3;
 
 public class Menu {
-	// <<--------------------------------->>
-    // <<---- ATTRIBUTES & CONSTANTS ----->>
-    // <<--------------------------------->>
-
+	/* <<--------------------------------->>
+    *  <<---- ATTRIBUTES & CONSTANTS ----->>
+    *  <<--------------------------------->>
+	*/
+	
 	private static final int REGISTER_EMPLOYEE = 1;
 	private static final int PRO_DEMOTE_EMPLOYEE = 2;
 	private static final int CHANGE_NAME = 3;
