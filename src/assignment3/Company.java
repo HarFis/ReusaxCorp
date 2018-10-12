@@ -181,16 +181,6 @@ public class Company {
 	 * 
 	 */
 	
-	public String checkPosition (String id) {
-		Employee searchedEmployee = retrieveEmployee(id);
-		if(searchedEmployee!=null)
-		{
-			return searchedEmployee.getClass().getSimpleName();
-		}
-		return "Does not exist";
-		
-	}
-	
 	public boolean changeToEmployee(String id) {
 
 		Employee employeeToChange = this.retrieveEmployee(id);

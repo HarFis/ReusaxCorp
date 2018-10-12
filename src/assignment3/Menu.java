@@ -58,7 +58,77 @@ public void run() {
 
 		case PRO_DEMOTE_EMPLOYEE:
 			String id = userInput.readLine("Enter ID of the employee that you want to promote: ");
-			System.out.println(reusaxCorp.checkPosition(id));
+			Employee employeeToChange = reusaxCorp.retrieveEmployee(id);
+			System.out.println(employeeToChange.getClass().getSimpleName()); //for testing
+
+			printSubPromoteEmployee();
+			
+			int x = userInput.readInt("Type your option: ");
+			
+			String degree;
+			
+			switch(x) {
+			
+				case 1://Intern
+					
+					if(!(employeeToChange instanceof Intern)) {
+						
+						int gpa = userInput.readInt("Enter GPA: ");
+						reusaxCorp.changeToIntern(id, gpa);
+					}
+					
+					break;
+					
+				case 2://Employee
+					
+					reusaxCorp.changeToEmployee(id);
+					break;
+				
+				case 3: //Manager
+					 
+					
+					if( employeeToChange instanceof Director) {
+						
+						Director directorToChange = (Director) employeeToChange;
+						degree = directorToChange.getDegree();
+						
+						reusaxCorp.changeToManager(id, degree);
+						
+					}else if(!(employeeToChange instanceof Manager)){
+						
+						degree = userInput.readLine("Enter degree: ");
+						reusaxCorp.changeToManager(id, degree);
+					}
+					
+					break;
+					
+				case 4: // Director
+					
+					String department;
+					
+					if(employeeToChange instanceof Director) {}
+					else if(employeeToChange instanceof Manager) {
+						
+						Manager managerToChange = (Manager) employeeToChange;
+						degree = managerToChange.getDegree();
+						
+						department = userInput.readLine("Enter department!!: ");
+						
+						reusaxCorp.changeToDirector(id, degree, department);
+						
+					}else if(employeeToChange instanceof Intern || employeeToChange instanceof Employee) {
+						
+						degree = userInput.readLine("Enter Degree:");
+						department = userInput.readLine("Enter Department:");
+						
+						reusaxCorp.changeToDirector(id, degree, department);
+					}
+					System.out.println(employeeToChange.getClass().getSimpleName());
+					break;
+					
+					
+			} 
+				
 			break;
 
 		case CHANGE_NAME:
@@ -150,6 +220,15 @@ private void printSubRegisterEmployee ()
     System.out.println(" 3. Register a manager ");
 	System.out.println(" 4. Register a director ");
     System.out.println(" 5. Back to main menu ");
+}
+private void printSubPromoteEmployee ()
+{
+	System.out.println(" Choose an option below: ");
+    System.out.println(" ");
+    System.out.println(" 1. Promote to Intern ");
+    System.out.println(" 2. Promote to Employee ");
+    System.out.println(" 3. Promote to Manager ");
+	System.out.println(" 4. Promote to Director");
 }
 private void SubRegisterEmployeeOptions() {
 	int option = 0;
