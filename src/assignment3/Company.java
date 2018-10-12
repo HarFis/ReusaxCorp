@@ -191,6 +191,8 @@ public class Company {
 		
 	}
 	
+	
+	
 	public boolean changeToEmployee(String id) {
 
 		Employee employeeToChange = this.retrieveEmployee(id);
