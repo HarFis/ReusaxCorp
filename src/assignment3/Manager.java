@@ -3,7 +3,7 @@ package assignment3;
 public class Manager extends Employee{
 	
 	/* -----------
-	 * Attributes
+	   Attributes
 	   ---------- */
 	
 	private String degree;
@@ -19,7 +19,7 @@ public class Manager extends Employee{
 
 	
 	/* --------------
-	 *  Constructor
+	    Constructor
 	    -----------  */
 
 	public Manager(String id, String name, double grossSalary, String degree) {

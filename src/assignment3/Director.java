@@ -2,9 +2,9 @@ package assignment3;
 
 public class Director extends Manager {
 
-	/*
-	 * ----------- Attributes ----------
-	 */
+	/* -----------
+	   Attributes
+	   ---------- */
 
 	private String department;
 
@@ -12,10 +12,10 @@ public class Director extends Manager {
 	public static final double UPPER_TAXATION_LIMIT = 50000.0;
 	public static final double TAXATION_FACTOR_1 = 0.2;
 	public static final double TAXATION_FACTOR_2 = 0.4;
-
-	/*
-	 * -------------- Constructor -----------
-	 */
+	
+	/* --------------
+    	Constructor
+       --------------  */
 
 	public Director(String id, String name, double grossSalary, String degree, String department) {
 		super(id, name, grossSalary, degree);
@@ -23,7 +23,9 @@ public class Director extends Manager {
 	}
 
 	/*
-	 * ------------------ Getters & Setters ------------------
+	 * ------------------ 
+	 * Getters & Setters 
+	 * ------------------
 	 */
 	
 	
@@ -44,13 +46,16 @@ public class Director extends Manager {
 	@Override
 	public double getNetSalary() {							//Different net salary for different gross salary
 
+		// splitted taxation for directors with salary above the upper limit
 		if (this.getGrossSalary() > UPPER_TAXATION_LIMIT) {
 			return (LOWER_TAXATION_LIMIT * (1 - TAXATION_FACTOR_1))
 					+ ((this.getGrossSalary() - LOWER_TAXATION_LIMIT) * (1 - TAXATION_FACTOR_2));			
-			
+		
+		// taxation for directors with salary between upper and lower limit 
 		} else if (this.getGrossSalary() >= LOWER_TAXATION_LIMIT) {
 			return this.getGrossSalary() * (1 - TAXATION_FACTOR_1);
-			
+		
+		// standard taxation for directors with salary below the lower limit
 		} else {
 			return super.getNetSalary();
 		}

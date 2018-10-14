@@ -1,12 +1,11 @@
 package assignment3;
 
-import assignment3.Employee;
 
 public class Employee {
 
-	/*
-	 * ----------- Attributes ----------
-	 */
+	/* -----------
+	   Attributes
+	   ---------- */
 
 	private String id;
 	private String name;
@@ -14,9 +13,9 @@ public class Employee {
 
 	public static final double DEFAULT_TAX = 0.1;
 
-	/*
-	 * -------------- Constructor -----------
-	 */
+	/* --------------
+    	Constructor
+       --------------  */
 
 	public Employee(String id, String name, double grossSalary) {
 		this.id = id;
@@ -25,7 +24,9 @@ public class Employee {
 	}
 
 	/*
-	 * ------------------ Getters & Setters ------------------
+	 * ------------------- 
+	 *  Getters & Setters 
+	 * -------------------
 	 */
 
 	public String getId() {
@@ -53,7 +54,9 @@ public class Employee {
 	}
 
 	/*
-	 * ------------ Behaviours ------------
+	 * ------------ 
+	 *  Behaviours 
+	 * -------------
 	 */
 
 	public double getNetSalary() { // Getting net salary
@@ -63,7 +66,12 @@ public class Employee {
 	}
 
 
-	// toString
+	/*
+	 * ---------------------------- 
+	 * ToString & Equals (Override) 
+	 * ----------------------------
+	 */
+	
 	@Override
 	public String toString() {
 
@@ -71,7 +79,7 @@ public class Employee {
 		return print;
 	}
 
-	
+	@Override
 	public boolean equals(Object anotherObject) { // Equals if same ID
 
 		if (anotherObject instanceof Employee) {

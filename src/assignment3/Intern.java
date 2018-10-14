@@ -3,8 +3,9 @@ package assignment3;
 public class Intern extends Employee {
 	
 	/* -----------
-	 * Attributes
+	   Attributes
 	   ---------- */
+	
 	private int gpa;
 	
 	public static final int LOWER_GPA_LIMIT = 5;

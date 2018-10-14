@@ -7,17 +7,21 @@ import java.util.Collections;
 public class Company {
 
 	/*
-	 * ----------- Attributes ----------
+	 * ----------- 
+	 *  Attributes 
+	 * ------------
 	 */
 
 	private ArrayList<Employee> employees;
-	private static double directorBenefit;
+	private static double directorBenefit; // static so that it is the same for every instance of director
 	
 	public static final String SORT_BY_NAME = "Name";
 	public static final String SORT_BY_NET_SALARY = "Net Salary";
 
 	/*
-	 * -------------- Constructor -----------
+	 * -------------- 
+	 *  Constructor 
+	 * --------------
 	 */
 
 	public Company() {
@@ -26,9 +30,10 @@ public class Company {
 	}
 
 	/*
-	 * ------------ Behaviours ------------
+	 * ------------ 
+	 *  Behaviours 
+	 * ------------
 	 */
-	
 	
 	
 	/*
@@ -139,10 +144,14 @@ public class Company {
 		}
 	}
 
-	public void updateDirectorBenefit(double newBenefit) {
+	public void updateDirectorBenefit(double newBenefit) { //change director's benefit which is a static variable
 		directorBenefit = newBenefit;
 		}
-
+	
+	public static double getDirectorBenefit() { //access director's benefit
+		return directorBenefit;
+	}
+	
 	/*
 	 *  CALCULATE SUM OF EMPLOYEES' SALARIES & TOTAL NUMBER OF EMPLOYEES
 	 */
@@ -177,7 +186,10 @@ public class Company {
 	 *  - Redundancy, same code in different methods
 	 *  - getGrossSalary is overriden in all subclasses, to access original salary
 	 *    we need to create new method getBaseSalary. (Redundancy)
-	 * 
+	 *  
+	 *  Good:
+	 *  - up- and downgrading possible
+	 *  - reuse of all already existing data possible
 	 * 
 	 */
 	
@@ -190,7 +202,6 @@ public class Company {
 		return "Does not exist";
 		
 	}
-	
 	
 	
 	public boolean changeToEmployee(String id) {
@@ -253,20 +264,15 @@ public class Company {
 	}
 	}
 	
-	/*
-	 * 
-	 * ----
-	 * 
-	 */
-	public static double getDirectorBenefit() {
-		return directorBenefit;
-	}
+
 
 	/*
-	 * -------Sort----
+	 * -------
+	 *  Sort
+	 * -------
 	 */
 	
-	public void sortBy(String sortOrder) {					//Sorting by name, if same name sort by gross salary
+	public boolean sortBy(String sortOrder) {					//Sorting by name, if same name sort by gross salary
 
 		if (sortOrder.equals(SORT_BY_NAME)) {
 
@@ -283,8 +289,9 @@ public class Company {
 					}
 				}
 			});
-			
-		} else if (sortOrder.equals(SORT_BY_NET_SALARY)) {			//Sorting by net salary
+		return true;	
+		} 
+		else if (sortOrder.equals(SORT_BY_NET_SALARY)) {			//Sorting by net salary
 
 			Collections.sort(employees, new Comparator<Employee>() {
 
@@ -293,13 +300,19 @@ public class Company {
 					return Double.compare(employee1.getNetSalary(), employee2.getNetSalary());
 				}
 			});
+		return true;
+		}
+		else { // return false if sorting method was not or wrongly specified
+		return false;	
 		}
 	}
 	
 
 
 	/*
-	 * ------------ toSTRING ------------ 
+	 * ------------ 
+	 *   toSTRING 
+	 * ------------ 
 	 */
 
 	public String toString() {
