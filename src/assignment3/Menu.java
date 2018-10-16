@@ -71,60 +71,35 @@ public void run() {
 			
 				case 1://Intern
 					
-					if(!(employeeToChange instanceof Intern)) {
-						
+										
 						int gpa = userInput.readInt("Enter GPA: ");
 						reusaxCorp.changeToIntern(id, gpa);
-					}
+					
 					
 					break;
 					
 				case 2://Employee
 					
-					reusaxCorp.changeToEmployee(id);
+					printMessageRegistration(reusaxCorp.changeToEmployee(id),id);
 					break;
 				
 				case 3: //Manager
 					 
-					
-					if( employeeToChange instanceof Director) {
-						
-						Director directorToChange = (Director) employeeToChange;
-						degree = directorToChange.getDegree();
-						
-						reusaxCorp.changeToManager(id, degree);
-						
-					}else if(!(employeeToChange instanceof Manager)){
-						
+			
 						degree = userInput.readLine("Enter degree: ");
 						reusaxCorp.changeToManager(id, degree);
-					}
 					
 					break;
 					
 				case 4: // Director
 					
 					String department;
-					
-					if(employeeToChange instanceof Director) {}
-					else if(employeeToChange instanceof Manager) {
-						
-						Manager managerToChange = (Manager) employeeToChange;
-						degree = managerToChange.getDegree();
-						
-						department = userInput.readLine("Enter department!!: ");
-						
-						reusaxCorp.changeToDirector(id, degree, department);
-						
-					}else if(employeeToChange instanceof Intern || employeeToChange instanceof Employee) {
 						
 						degree = userInput.readLine("Enter Degree:");
 						department = userInput.readLine("Enter Department:");
 						
-						reusaxCorp.changeToDirector(id, degree, department);
-					}
-					System.out.println(employeeToChange.getClass().getSimpleName());
-					break;
+						printMessageID(reusaxCorp.changeToDirector(id, degree, department),id);
+						break;
 					
 					
 			} 

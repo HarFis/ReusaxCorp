@@ -192,17 +192,7 @@ public class Company {
 	 *  - reuse of all already existing data possible
 	 * 
 	 */
-	
-	public String checkPosition (String id) {
-		Employee searchedEmployee = retrieveEmployee(id);
-		if(searchedEmployee!=null)
-		{
-			return searchedEmployee.getClass().getSimpleName();
-		}
-		return "Does not exist";
 		
-	}
-	
 	
 	public boolean changeToEmployee(String id) {
 
@@ -218,37 +208,7 @@ public class Company {
 			return false;
 		}
 	}
-
-	public boolean changeToManager(String id, String degree) {
-
-		Employee employeeToChange = this.retrieveEmployee(id);
-		if (employeeToChange != null) {
-			String name = employeeToChange.getName();
-			double grossSalary = employeeToChange.getBaseSalary();
-
-			this.removeEmployee(id);
-			this.registerManager(id, name, grossSalary, degree);
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public boolean changeToDirector(String id, String degree, String department) {
-
-		Employee employeeToChange = this.retrieveEmployee(id);
-		if (employeeToChange != null) {
-			String name = employeeToChange.getName();
-			double grossSalary = employeeToChange.getBaseSalary();
-
-			this.removeEmployee(id);
-			this.registerDirector(id, name, grossSalary, degree, department);
-			return true;
-		} else {
-			return false;
-		}
-	}
-
+	
 	public boolean changeToIntern(String id, int gpa) {
 
 		Employee employeeToChange = this.retrieveEmployee(id);
@@ -263,6 +223,51 @@ public class Company {
 			return false;
 	}
 	}
+
+	public boolean changeToManager(String id, String degree) {
+
+		Employee employeeToChange = this.retrieveEmployee(id);
+		
+		if (employeeToChange != null) {
+			String name = employeeToChange.getName();
+			double grossSalary = employeeToChange.getBaseSalary();
+			if( employeeToChange instanceof Director) {
+				
+				Director directorToChange = (Director) employeeToChange;
+				degree = directorToChange.getDegree();	
+			}
+			this.removeEmployee(id);
+			this.registerManager(id, name, grossSalary, degree);
+			return true;
+		} 
+		
+		else {
+			return false;
+		}
+	}
+
+	public boolean changeToDirector(String id, String degree, String department) {
+
+		Employee employeeToChange = this.retrieveEmployee(id);
+		if (employeeToChange != null) {
+			String name = employeeToChange.getName();
+			double grossSalary = employeeToChange.getBaseSalary();
+			if(employeeToChange instanceof Manager) {
+				
+				Manager managerToChange = (Manager) employeeToChange;
+				degree = managerToChange.getDegree();
+			}	
+			this.removeEmployee(id);
+			this.registerDirector(id, name, grossSalary, degree, department);
+			return true;
+		} 
+		
+		else {
+			return false;
+		}
+	}
+
+	
 	
 
 
