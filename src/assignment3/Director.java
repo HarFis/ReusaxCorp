@@ -45,19 +45,22 @@ public class Director extends Manager {
 
 	@Override
 	public double getNetSalary() {							//Different net salary for different gross salary
-
+		double netsalary = 0.0;
 		// splitted taxation for directors with salary above the upper limit
 		if (this.getGrossSalary() > UPPER_TAXATION_LIMIT) {
-			return (LOWER_TAXATION_LIMIT * (1 - TAXATION_FACTOR_1))
+			netsalary = (LOWER_TAXATION_LIMIT * (1 - TAXATION_FACTOR_1))
 					+ ((this.getGrossSalary() - LOWER_TAXATION_LIMIT) * (1 - TAXATION_FACTOR_2));			
-		
+			return netsalary;
+			
 		// taxation for directors with salary between upper and lower limit 
 		} else if (this.getGrossSalary() >= LOWER_TAXATION_LIMIT) {
-			return this.getGrossSalary() * (1 - TAXATION_FACTOR_1);
-		
+			netsalary = this.getGrossSalary() * (1 - TAXATION_FACTOR_1);
+			return netsalary;
+			
 		// standard taxation for directors with salary below the lower limit
 		} else {
-			return super.getNetSalary();
+			netsalary = super.getNetSalary();
+			return netsalary;
 		}
 	}
 }

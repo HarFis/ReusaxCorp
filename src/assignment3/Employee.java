@@ -61,7 +61,7 @@ public class Employee {
 
 	public double getNetSalary() { // Getting net salary
 
-		double netSalary = this.getGrossSalary() - (this.getGrossSalary() * DEFAULT_TAX);
+		double netSalary = this.getGrossSalary() * (1 - DEFAULT_TAX);
 		return netSalary;
 	}
 

@@ -62,6 +62,7 @@ public class Manager extends Employee{
 
 		return super.getGrossSalary()+ this.getBonus();
 	}
+	
 	public boolean isDegreeBsc() { // Check to see if degree is equal to a BSc
 		return this.degree.toLowerCase().equals(LOW_EDU_LEVEL.toLowerCase());
 	}

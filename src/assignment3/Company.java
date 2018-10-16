@@ -17,6 +17,7 @@ public class Company {
 	
 	public static final String SORT_BY_NAME = "Name";
 	public static final String SORT_BY_NET_SALARY = "Net Salary";
+	public static final double INITIAL_DIRECTOR_BENEFIT = 0.0;
 
 	/*
 	 * -------------- 
@@ -26,7 +27,7 @@ public class Company {
 
 	public Company() {
 		employees = new ArrayList<>();
-		directorBenefit = 0.0;
+		directorBenefit = INITIAL_DIRECTOR_BENEFIT;
 	}
 
 	/*
@@ -122,14 +123,13 @@ public class Company {
 
 	public boolean updateDegree(String id, String newDegree) { 						//Updating degree, returning if successful or not
 		Employee theOneToGetNewDegree = retrieveEmployee(id);
-		if (theOneToGetNewDegree != null) {
-			if (theOneToGetNewDegree instanceof Manager || theOneToGetNewDegree instanceof Director) {		//Can only update degree if Employee is Manager or Director
+		if (theOneToGetNewDegree != null && theOneToGetNewDegree instanceof Manager) {
+				//Can only update degree if Employee is Manager or Director
 				Manager theOneTemp = (Manager) theOneToGetNewDegree;
 				theOneTemp.setDegree(newDegree);
 				return true;
-			}
-			return false;
-		}else {
+		}
+		else {
 			return false;
 		}
 	}
@@ -231,9 +231,9 @@ public class Company {
 		if (employeeToChange != null) {
 			String name = employeeToChange.getName();
 			double grossSalary = employeeToChange.getBaseSalary();
-			if( employeeToChange instanceof Director) {
+			if( employeeToChange instanceof Manager) {
 				
-				Director directorToChange = (Director) employeeToChange;
+				Manager directorToChange = (Manager) employeeToChange;
 				degree = directorToChange.getDegree();	
 			}
 			this.removeEmployee(id);
